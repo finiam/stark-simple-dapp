@@ -57,7 +57,7 @@ button {
   font-size: 1em;
   font-weight: 600;
   font-family: inherit;
-  background-color: #646cff;
+  background-color: #ff727f;
   cursor: pointer;
   transition: border-color 0.25s;
   text-transform: uppercase;
@@ -84,7 +84,7 @@ input {
 .title {
   margin-bottom: 2rem;
   font-size: 2rem;
-  text-shadow: #646cff 1px 1px;
+  text-shadow: #ff727f 1px 1px;
 }
 
 .connector-row {

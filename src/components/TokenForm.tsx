@@ -20,7 +20,7 @@ export default function TokenForm({ address }: { address: string }) {
   async function send(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
 
-    setStatus("Loading...");
+    setStatus("Loading...");  
 
     try {
       const formData = new FormData(evt.currentTarget);
