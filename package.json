@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ethersproject/bignumber": "^5.7.0",
+    "get-starknet": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "starknet": "^4.22.0"
