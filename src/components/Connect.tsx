@@ -7,12 +7,14 @@ export default function Connect({
   setAddress: (val: string) => void;
 }) {
   async function handleClick() {
-    const st = await connect();
+    const starknet = await connect();
 
-    if (st?.account) {
-      setAddress(st.account.address);
-      contract.connect(st.account);
+    if (starknet?.account) {
+      setAddress(starknet.account.address);
+      contract.connect(starknet.account);
     }
+
+    // ^ use "get-starknet-core" for more low-level control
   }
 
   return (

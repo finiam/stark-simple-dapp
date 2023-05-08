@@ -13,6 +13,7 @@ export default function TokenForm({ address }: { address: string }) {
     const bal = await contract.balanceOf(address);
     const asBN = uint256.uint256ToBN(bal.balance);
     const decimal = formatFixed(asBN.toString(), DECIMALS);
+    // or: result / 10 ** DECIMALS
 
     setBalance(decimal);
   }
@@ -20,15 +21,16 @@ export default function TokenForm({ address }: { address: string }) {
   async function send(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
 
-    setStatus("Loading...");  
+    setStatus("Loading...");
 
     try {
       const formData = new FormData(evt.currentTarget);
       const to = formData.get("to");
       const amount = formData.get("amount") as string;
 
+      // uint256
       const amountFormatted = {
-        type: "struct" as const,
+        type: "struct",
         ...uint256.bnToUint256(parseFixed(amount, DECIMALS).toString()),
       };
 
@@ -50,13 +52,20 @@ export default function TokenForm({ address }: { address: string }) {
       <h3>USDC (wink wink)</h3>
       <strong>Balance: {balance || "..."}</strong>
       <form onSubmit={send}>
-        <input type="text" name="to" placeholder="Recipient" required />
+        <input
+          type="text"
+          name="to"
+          placeholder="Recipient"
+          autoComplete="on"
+          required
+        />
         <input
           type="number"
           name="amount"
           placeholder="Amount"
           required
           step="any"
+          autoComplete="on"
         />
         <button type="submit">Send</button>
       </form>
