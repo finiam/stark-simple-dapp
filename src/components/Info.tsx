@@ -6,7 +6,7 @@ export default function Info() {
   const [block, setBlock] = useState<GetBlockResponse>();
 
   async function getInfo() {
-    const block = await provider.getBlock(null); // <- Get latest block
+    const block = await provider.getBlock("latest"); // <- Get latest block    
 
     if (block) setBlock(block);
   }

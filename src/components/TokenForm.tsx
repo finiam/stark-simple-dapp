@@ -10,8 +10,8 @@ export default function TokenForm({ address }: { address: string }) {
   const [status, setStatus] = useState("");
 
   async function getBalance() {
-    const bal = await contract.balanceOf(address);
-    const asBN = uint256.uint256ToBN(bal.balance);
+    const bal = await contract.balanceOf(address); //<- returns a uint256    
+    const asBN = uint256.uint256ToBN(bal.balance);   
     const decimal = formatFixed(asBN.toString(), DECIMALS);
     // or: result / 10 ** DECIMALS
 
@@ -28,14 +28,14 @@ export default function TokenForm({ address }: { address: string }) {
       const to = formData.get("to");
       const amount = formData.get("amount") as string;
 
-      // uint256
+      // string to uint256
       const amountFormatted = {
         type: "struct",
         ...uint256.bnToUint256(parseFixed(amount, DECIMALS).toString()),
       };
 
-      const tx = await contract.invoke("transfer", [to, amountFormatted]);
-      //or: const tx = await contract.transfer(to, amountFormatted);
+      const tx = await contract.transfer(to, amountFormatted);
+      //or: const tx = await contract.invoke("transfer", [to, amountFormatted]); 
 
       setStatus(`Tx: ${tx.transaction_hash}`);
     } catch (err) {
@@ -56,7 +56,8 @@ export default function TokenForm({ address }: { address: string }) {
           type="text"
           name="to"
           placeholder="Recipient"
-          autoComplete="on"
+          id="to"
+          title="to"
           required
         />
         <input

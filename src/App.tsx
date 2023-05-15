@@ -12,9 +12,9 @@ function App() {
 
       {address ? (
         <div>
-          <Info />
           <p>Hello, {address}</p>
           <TokenForm address={address} />
+          <Info />
         </div>
       ) : (
         <Connect setAddress={setAddress} />

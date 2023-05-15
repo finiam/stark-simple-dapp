@@ -12,6 +12,7 @@ export default function Connect({
     if (starknet?.account) {
       setAddress(starknet.account.address);
       contract.connect(starknet.account);
+      
     }
 
     // ^ use "get-starknet-core" for more low-level control
